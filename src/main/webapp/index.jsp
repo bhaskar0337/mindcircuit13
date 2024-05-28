@@ -1,5 +1,5 @@
 <html>
 <body>
-	<h1 style="color: green; font-size: 40px;" align="left"> Mind Circuit Training Institute - We don't just train people; we COACH, MENTOR, and BUILD PEOPLE ! </h1>
+	<h1 style="color: BLUE; font-size: 65px;" align="left"> HI IAM BHASKAR A "DEVOPS ENGINEER" PART OF DEVOPS MINDCIRCUIT INSTITUTE  </h1>
 </body>
 </html>
