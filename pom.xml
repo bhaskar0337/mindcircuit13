@@ -5,7 +5,7 @@
 
     <groupId>com.example</groupId>
     <artifactId>mindcircuit13</artifactId>
-    <version>2.251-snapshot</version>
+    <version>3.3-snapshot</version>
     <packaging>war</packaging>
 
 	<properties>
