@@ -17,9 +17,11 @@ pipeline {
 		stage('sonar') {
             steps {
                 echo 'scanning project'
-      mvn sonar:sonar \\
-  -Dsonar.host.url=http://34.201.138.230:9000 \\
-  -Dsonar.login=71f9eab82f0353e5e7691a16f573dbedbfad9fc9'''
+    sh '''
+        mvn sonar:sonar \
+            -Dsonar.host.url=http://34.201.138.230:9000 \
+            -Dsonar.login=71f9eab82f0353e5e7691a16f573dbedbfad9fc9
+        '''
             }
         }
 		
