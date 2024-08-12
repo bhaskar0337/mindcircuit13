@@ -15,9 +15,9 @@ pipeline {
 		stage('sonar') {
             steps {
                 echo 'scanning project'
-			    sh '''mvn sonar:sonar \\
-  -Dsonar.host.url=http://3.83.18.215:9000 \\
-  -Dsonar.login=ae71c2e5c7b3c5932dea385c16eb074bd9ad764d'''
+mvn sonar:sonar \\
+  -Dsonar.host.url=http://34.201.138.230:9000 \\
+  -Dsonar.login=71f9eab82f0353e5e7691a16f573dbedbfad9fc9'''
             }
         }
 		
@@ -37,7 +37,7 @@ pipeline {
 		stage('deploy to tomcat') {
             steps {
                 echo 'tomcat deploy'
-			    deploy adapters: [tomcat9(credentialsId: 'tomcat', path: '', url: 'http://100.25.144.30:8091/')], contextPath: 'mc-app-batch13', war: '**/*.war'
+			    deploy adapters: [tomcat9(credentialsId: 'tomcat', path: '', url: 'http://18.234.236.182:8081/')], contextPath: 'mc-app-batch13', war: '**/*.war'
             }
         }
     }
