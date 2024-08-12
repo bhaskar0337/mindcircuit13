@@ -1,9 +1,7 @@
-
-
 pipeline {
     agent any
     tools{
-        jdk 'java 8'
+        jdk 'jdk-8'
     }
 
     stages {
@@ -17,11 +15,9 @@ pipeline {
 		stage('sonar') {
             steps {
                 echo 'scanning project'
-    sh '''
-        mvn sonar:sonar \
-            -Dsonar.host.url=http://34.201.138.230:9000 \
-            -Dsonar.login=71f9eab82f0353e5e7691a16f573dbedbfad9fc9
-        '''
+			    sh '''mvn sonar:sonar \\
+  -Dsonar.host.url=http://34.201.138.230:9000 \\
+  -Dsonar.login=71f9eab82f0353e5e7691a16f573dbedbfad9fc9'''
             }
         }
 		
@@ -44,5 +40,5 @@ pipeline {
 			    deploy adapters: [tomcat9(credentialsId: 'tomcat', path: '', url: 'http://18.234.236.182:8081/')], contextPath: 'mc-app-batch13', war: '**/*.war'
             }
         }
-}
+    }
 }
