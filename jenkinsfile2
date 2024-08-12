@@ -1,47 +1,44 @@
+
+
 pipeline {
     agent any
-    tools {
+    tools{
         jdk 'java 8'
     }
 
     stages {
         stage('git') {
             steps {
-                echo 'Fetching code from SCM'
-                git branch: 'main', url: 'https://github.com/bhaskar0337/mindcircuit13.git'
+                echo 'scm'
+				git branch: 'main', url: 'https://github.com/devopstraininghub/mindcircuit13.git'
             }
         }
-        
-        stage('sonar') {
+		
+		stage('sonar') {
             steps {
-                echo 'Running SonarQube analysis'
-                sh '''
-                mvn sonar:sonar \
-                    -Dsonar.host.url=http://34.201.138.230:9000 \
-                    -Dsonar.login=71f9eab82f0353e5e7691a16f573dbedbfad9fc9
-                '''
+                echo 'scanning project'
+mvn sonar:sonar \\
+  -Dsonar.host.url=http://34.201.138.230:9000 \\
+  -Dsonar.login=71f9eab82f0353e5e7691a16f573dbedbfad9fc9'''
             }
         }
-        
-        stage('build') {
+		
+		stage('build') {
             steps {
-                echo 'Building the project with Maven'
-                sh 'mvn clean install'
+                echo 'generating artifact using maven build tool'
+			    sh 'mvn clean install'
             }
         }
-        
-        stage('nexus artifactory') {
+		
+		stage('nexus artifactory') {
             steps {
-                echo 'Publishing artifacts to Nexus'
-                sh 'mvn deploy'
+                echo 'publish to nexus'
+			    sh 'mvn  deploy'
             }
         }
-        
-        stage('deploy to tomcat') {
+		stage('deploy to tomcat') {
             steps {
-                echo 'Deploying to Tomcat'
-                deploy adapters: [tomcat9(credentialsId: 'tomcat', path: '', url: 'http://18.234.236.182:8081/')], contextPath: 'mc-app-batch13', war: '**/*.war'
+                echo 'tomcat deploy'
+			    deploy adapters: [tomcat9(credentialsId: 'tomcat', path: '', url: 'http://18.234.236.182:8081/')], contextPath: 'mc-app-batch13', war: '**/*.war'
             }
         }
-    }
-}
