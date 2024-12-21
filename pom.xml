@@ -17,12 +17,12 @@
 	<distributionManagement>
 		 <snapshotRepository>
 		    <id>NexusRepo</id>
-		    <url>http://54.242.168.143:8081/repository/batch13-repository-snapshots/</url>
+		    <url>http://34.207.116.44:8081/repository/batch13-repository-snapshots/</url>
 		 </snapshotRepository>
 		
 		<repository>
 		    <id>NexusRepo</id>
-		    <url>http://54.242.168.143:8081/repository/batch13-repository/</url>
+		    <url>http://34.207.116.44:8081/repository/batch13-repository/</url>
 		</repository>
   	</distributionManagement>
 
