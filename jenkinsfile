@@ -1,11 +1,23 @@
 pipeline {
     agent any
+	tools{
+        jdk 'JAVA 11'
+    }
+
 
     stages {
         stage('CLONE SCM') {
             steps {
                 echo 'Cloning Mc-app project code'
 				git branch: 'main', url: 'https://github.com/bhaskar0337/mindcircuit13.git'
+            }
+        }
+		
+			stage('sonar') {
+            steps {
+                echo 'scanning project'
+			    sh 'mvn clean compile'
+	            sh 'mvn sonar:sonar'
             }
         }
 		
@@ -19,7 +31,7 @@ pipeline {
 		stage('Deploy to tomcat') {
             steps {
                 echo 'Deploying artifact to tomcat webserver '
-				deploy adapters: [tomcat9(credentialsId: 'batch-13', path: '', url: 'http://100.24.255.234:8081/')], contextPath: 'facebook-app', war: '**/*.war'
+				deploy adapters: [tomcat9(credentialsId: 'tomcat', path: '', url: 'http://54.90.195.126:8081/')], contextPath: 'gameoflife2', war: '**/*.war'
             }
         }
     }
